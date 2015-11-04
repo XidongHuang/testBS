@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/simple-sidebar.css">
+<link rel="stylesheet" href="css/file-upload.css">
+</head>
+<body onload="startTime()">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle coolapsed" data-toggle="collapse"></button>
+			<a class="navbar-brand" href="http://algomau.ca" style="color:red;font-weight:bold">Alogma University</a>
+			<a id="menu-toggle" href="#" class="navbar-toggle">
+					<span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			</a>
+		
+		</div>
+	
+		<div>
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Select ESL Level
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Level 1</a></li>
+						<li><a href="#">Level 2</a></li>
+						<li><a href="#">Level 3</a></li>
+						<li><a href="#">Level 4</a></li>
+						<li><a href="#">Bridging Program</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">User</a>
+				<li><a href="#">Date: <span id="clock" style="font-weight:bold">clock</span></a>
+				<li><a href="#">Login</a>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+	<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-2 sidebar">
+					<div id="sidebar-wrapper" class="sidebar-toggle">
+						<ul class="sidebar-nav">
+							<li><a href="#">Scores<span class="sr-only"></span></a></li>
+							<li><a href="#">Analysis</a></li>					
+							<li><a href="#">Teacher Evaluation</a></li>
+						</ul>				
+					</div>			
+				</div>
+			
+			<div class="col-md-10 col-md-offset-2 main">
+			
+			
+				<div class="row placeholders">
+					<div class="col-md-6 placeholder">
+						<div class="btn-group" role="group" aria-label="Large button group">
+							<button type="button" class="btn-warning">Save</button>				
+						</div>
+					
+						<div class="btn-group" role="group" aria-label="Large button group">
+							<button type="button" class="btn btn-primary">Upload</button>
+							<button type="button" class="btn btn-info">Export</button>
+						</div>				
+					</div>
+					
+				</div>
+			
+			
+		</div>			
+			
+					
+	</div>	
+		
+			
+			
+
+</div>
+
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+
+function startTime() {
+    var today = new Date();
+    var y = today.getFullYear();
+    var mon = today.getMonth();
+    var d = today.getDay();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('clock').innerHTML =
+    y+ "/" + mon + "/" + d + "/" + h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+
+</script>
+</body>
+</html>
