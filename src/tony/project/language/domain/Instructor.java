@@ -117,7 +117,7 @@ public class Instructor extends RootObject<Instructor> implements InstructorDM {
 		DynamoDBMapper mapper = Initial.getMapper();
 		
 		DynamoDBScanExpression scanExpression = 
-				new DynamoDBScanExpression();
+				new DynamoDBScanExpression();	
 		
 		scanExpression.addFilterCondition("Upload", condition);
 

@@ -3376,7 +3376,7 @@ select[multiple].input-lg, textarea.input-lg {
 
 .btn {
     display: inline-block;
-    padding: 6px 12px;
+    padding: 0px 0px;
     margin-bottom: 0;
     font-size: 14px;
     font-weight: 400;
@@ -7199,4 +7199,23 @@ button.close {
     .hidden-print {
         display: none !important
     }
+}
+
+
+/*
+for dropdown buttons group
+*/
+.btn-group.btn {   border: 0;   padding: 0; }
+.btn-group.btn > .btn { border-radius: 0 }
+.btn-group.btn > .dropdown-menu {  text-align: left; }
+.btn-group.btn:first-child > .btn {
+  -webkit-border-radius: 4px 0 0 4px;
+     -moz-border-radius: 4px 0 0 4px;
+          border-radius: 4px 0 0 4px;
+}
+
+.btn-group.btn:last-child > .btn {
+  -webkit-border-radius: 0 4px 4px 0;
+     -moz-border-radius: 0 4px 4px 0;
+          border-radius: 0 4px 4px 0;
 }

@@ -17,5 +17,5 @@ public interface ScoresDetailDM {
 	
 	public void batchSaveScoresDetail(List<ScoresDetail> socresList);
 	
-
+	public List<ScoresDetail> loadScoresDetails(String filterConditionName, String filterConditionValue);
 }

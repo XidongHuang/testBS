@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">  
+<title>Level 1 Grammar</title>
+</head>
+
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap-table/src/bootstrap-table.css">
+    <link rel="stylesheet" href="//rawgit.com/vitalets/x-editable/master/dist/bootstrap3-editable/css/bootstrap-editable.css">
+    <script src="assets/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/bootstrap-table/src/bootstrap-table.js"></script>
+    <script src="assets/bootstrap-table/src/extensions/editable/bootstrap-table-editable.js"></script>
+    <script src="//rawgit.com/vitalets/x-editable/master/dist/bootstrap3-editable/js/bootstrap-editable.js"></script>
+    <script src="assets/bootstrap-table/src/extensions/export/bootstrap-table-export.js"></script>
+    <script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+    <script src="js/ga.js"></script>
+
+
+<body>
+	<table id="table" data-toggle="table" 
+		data-url="json/L1Grammar.json"
+		data-pagination="true"
+		data-page-list="[5, 10, 20, 50, 100, 200]"
+		data-toolbar = "#toolbar"
+		data-show-refresh="true"
+		data-show-columns="true"
+		data-minimum-count-columns="2"
+		data-show-export="true"
+		data-search="true">
+
+		<thead>
+			<tr>
+				<th data-field="StudentID" data-sortable="true">StudentID</th>
+				<th data-field="FirstName" data-editable="true" data-sortable="true">First Name</th>
+				<th data-field="Surname" data-editable="true" data-sortable="true">Surname</th>
+				<th data-field="Attendance" data-editable="true" data-sortable="true">Attendance</th>
+				<th data-field="Quiz1" data-editable="true" data-sortable="true">Quiz1</th>
+				<th data-field="Quiz2" data-editable="true" data-sortable="true">Quiz2</th>
+				<th data-field="Quiz3" data-editable="true" data-sortable="true">Quiz3</th>
+				<th data-field="Quiz4" data-editable="true" data-sortable="true">Quiz4</th>
+				<th data-field="Quiz5" data-editable="true" data-sortable="true">Quiz5</th>
+				<th data-field="Quiz6" data-editable="true" data-sortable="true">Quiz6</th>
+				<th data-field="Quiz7" data-editable="true" data-sortable="true">Price</th>
+				<th data-field="Quiz8" data-editable="true" data-sortable="true">Quiz7</th>
+				<th data-field="Quiz9" data-editable="true" data-sortable="true">Quiz9</th>
+				<th data-field="Quiz10" data-editable="true" data-sortable="true">Quiz10</th>
+				<th data-field="QuizTotal" data-editable="true" data-sortable="true">QuizTotal</th>
+				<th data-field="Midterm" data-editable="true" data-sortable="true">Mid-term</th>
+				<th data-field="MidtermTotal" data-editable="true" data-sortable="true">MidtermTotal</th>
+				<th data-field="Homework" data-editable="true" data-sortable="true">Homework</th>
+				<th data-field="HomeworkTotal" data-editable="true" data-sortable="true">HomeworkTotal</th>
+				<th data-field="FinalExam" data-editable="true" data-sortable="true">FinalExam</th>
+				<th data-field="FinalTotal" data-editable="true" data-sortable="true">FinalTotal</th>
+				<th data-field="CourseTotal" data-editable="true" data-sortable="true">CourseTotal</th>
+				<th data-field="FinalMarks" data-editable="true" data-sortable="true">FinalMarks</th>
+			</tr>
+		</thead>
+	</table>
+	<div class="btn-group btn-group-lg pull-right" role="group" aria-label="Large button group" id="save">
+                        <button type="button" class="btn btn-success ">Save</button>
+    </div>
+<script>
+var $table = $('#table'),
+	$button = $('#save');
+	
+$(function () {
+$button.click(function () {
+	alert("Testing!");
+	alert(JSON.stringify($table.bootstrapTable('getData')));
+	$.ajax({
+		url:'saveServlet',
+		type:'POST',
+		dataType: 'json',
+		data:{'tableData': JSON.stringify($table.bootstrapTable('getData'))},
+		success: function(data, textStatus){
+			alert("YES!");
+			
+		},
+		
+		error: function(xhr,status,errMsg){
+			
+			alert("NO!");
+			
+		}
+	});
+});
+}); 
+</script>
+
+<script>
+$table.bootstrapTable('refresh', {
+    url: 'json/L1Grammar.json'
+});
+</script>
+
+<script>
+window.onload = function(){
+	
+	$("#table").attr("data-url", "json/L1Grammar.json");
+	
+};
+
+</script>
+
+
+
+</body>
+</html>

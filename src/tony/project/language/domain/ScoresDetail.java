@@ -9,10 +9,16 @@ import org.codehaus.jackson.type.TypeReference;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
+import com.amazonaws.services.dynamodbv2.model.Condition;
 
 import tony.project.language.formatter.JSONFormatter;
+import tony.project.language.initial.Initial;
 import tony.project.language.interfaces.JSONFormatterOM;
 import tony.project.language.interfaces.ScoresDetailDM;
 
@@ -154,4 +160,31 @@ public class ScoresDetail extends RootObject<ScoresDetail>implements ScoresDetai
 		return sArray;
 	}
 
+	@Override
+	public List<ScoresDetail> loadScoresDetails(String filterConditionName, String filterConditionValue) {
+
+		Condition condition = new Condition()
+				.withComparisonOperator(ComparisonOperator.EQ)
+				.withAttributeValueList(new AttributeValue(filterConditionValue));
+		
+		List<ScoresDetail> scoresDetails = scanByCourseCode(filterConditionName, condition);
+		
+		return scoresDetails;
+	}
+
+private List<ScoresDetail> scanByCourseCode(String filterConditionName, Condition condition){
+		
+		DynamoDBMapper mapper = Initial.getMapper();
+		
+		DynamoDBScanExpression scanExpression = 
+				new DynamoDBScanExpression();	
+		
+		scanExpression.addFilterCondition(filterConditionName, condition);
+
+		List<ScoresDetail> scanResult = mapper.scan(ScoresDetail.class, scanExpression);
+	
+		
+		return scanResult;
+	}
+	
 }
